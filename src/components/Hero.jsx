@@ -10,7 +10,7 @@ import heart from "../assets/hero icons/Heart.png";
 function Hero() {
   return (
     <div className="bg-heroBG bg-vectormob bg-no-repeat bg-right-top text-white w-full h-[503px]
-     rounded-[40px] pl-8 md:pl-11 md:w-[43rem] md:h-[373px] md:flex md:justify-between md:bg-vector md:bg-right">
+     rounded-[40px] pl-8 md:pl-11 md:w-[50%] md:h-[373px] md:flex md:justify-between md:bg-vector md:bg-right">
       <div className="h-full flex flex-col justify-between  md:my-9 md:h-auto">
         <p className="text-xs font-normal mt-8">Currated playlist</p>
         <div className="">

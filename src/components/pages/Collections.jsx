@@ -2,7 +2,7 @@ import React from 'react'
 
 function Collections() {
   return (
-    <div className='mt-[85px]'>Collections</div>
+    <div className='text-white mt-[85px] md:ml-[5rem]'>Collections</div>
   )
 }
 

@@ -24,7 +24,7 @@ function NavBar({ setShowSideBar }) {
         <img
           src={search}
           alt="search icon"
-          className="absolute top-1 right-2 cursor-pointer md:left-4"
+          className="absolute top-2 right-1 cursor-pointer md:left-4"
         />
         <input
           id="search"
