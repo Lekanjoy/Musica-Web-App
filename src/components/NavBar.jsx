@@ -10,7 +10,7 @@ function NavBar({ setShowSideBar }) {
     setShowSideBar((prevState) => !prevState);
   }
   return (
-    <header className="bg-bgDarkSecondary flex justify-between items-center p-6 z-10 fixed w-full top-0 left-0 right-0">
+    <header className="bg-bgDarskSecondary  z-30 flex justify-between items-center p-6 fixed w-full top-0 left-0 right-0">
       <div className="flex items-center gap-x-6 md:w-[10%]">
         <img
           src={hamburger}

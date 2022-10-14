@@ -12,7 +12,7 @@ const Layout = () => {
   return (
     <div className="App font-QuickSand relative bg-bgDarkPrimary w-full min-h-screen p-6">
       <NavBar showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
-      <div className="fixed"><SideBarDeskTop/></div>
+      <div className=" hidden md:flex"><SideBarDeskTop/></div>
       <div className="md:hidden">{showSideBar && <SideBar />}</div>
       <div className=""><MusicPlayer/></div>
       <Outlet/>
