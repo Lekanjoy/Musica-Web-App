@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import hamburger from "../assets/navBar/hamburger.svg";
 import logo from "../assets/navBar/music-logo.svg";
 import search from "../assets/navBar/search.svg";
@@ -9,8 +9,26 @@ function NavBar({ setShowSideBar }) {
   function toggleSideBar() {
     setShowSideBar((prevState) => !prevState);
   }
+
+  // Add background onScroll
+  useEffect(() => {
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > "20") {
+        header.style.background = "#1A1E1F";
+      } else {
+        header.style.background = "transparent";
+      }
+    });
+
+  },[])
+  
+
   return (
-    <header className="bg-bgDarskSecondary  z-30 flex justify-between items-center p-6 fixed w-full top-0 left-0 right-0">
+    <header
+      id="header"
+      className="bg-bgDarskSecondary  z-30 flex justify-between items-center p-6 fixed w-full top-0 left-0 right-0"
+    >
       <div className="flex items-center gap-x-6 md:w-[10%]">
         <img
           src={hamburger}

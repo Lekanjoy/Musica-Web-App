@@ -24,7 +24,7 @@ function Tunes() {
           alt="cover image"
           className="absolute w-full opacity-10 z-[1] bottom-[70%]  right-0 md:bottom-[50%]"
         />
-        <img src={cover} alt="cover image" className="z-10" />
+        <img src={cover} alt="cover image" className="z-10 " />
         <div className="text z-10">
           <div className="mb-10 max-w-[530px]">
             <h3 className="text-[#A4C7C6] text-4xl mt-6 font-bold mb-2 md:mt-0">
@@ -54,67 +54,60 @@ function Tunes() {
       </div>
       <div className="tunes flex flex-col gap-y-2 pb-36">
         <div className="tune1 z-10 h-14 w-full rounded-2xl bg-tunesBg  px-3 flex justify-between items-center">
-          <div className="flex gap-x-20 items-center">
+          <div className="flex items-center gap-x-3  md:gap-x-20">
             <div className="flex items-center gap-x-4">
               <img src={image1} alt="music image" />
-              <img src={like} alt="like icon" />
+              <img src={like} alt="like icon" className="hidden md:block" />
             </div>
-            <p className="text-xs w-[150px]">Let me love you - Krisx</p>
-          </div>
-          <p className="text-xs  text-center w-20">Single</p>
-          <p className="text-xs w-6 text-center">04:17</p>
-          <img src={more} alt="more options button" />
-        </div>
-        <div className="tune1 z-10 h-14 w-full rounded-2xl bg-tunesBg  px-3 flex justify-between items-center">
-          <div className="flex gap-x-20 items-center">
-            <div className="flex items-center gap-x-4">
-              <img src={image3} alt="music image" />
-              <img src={like} alt="like icon" />
+            <div className="">
+              <p className="text-xs w-[150px]">Let me love you - Krisx</p>
+              <p className="text-xs   w-20 md:hidden">Single</p>
             </div>
-            <p className="text-xs w-[150px]">Wetin man go do ~ Burna</p>
           </div>
-          <p className="text-xs  text-center w-20">African Giant</p>
-          <p className="text-xs w-6 text-center">02:30</p>
-          <img src={more} alt="more options button" />
+          <p className="hidden text-xs  text-center w-20 md:block">Single</p>
+          <p className="hidden text-xs w-6 text-center md:block">04:17</p>
+          <div className="flex flex-col gap-y-1">
+            <img src={more} alt="more options button" />
+            <p className=" text-xs w-6 text-center md:hidden">04:17</p>
+          </div>
         </div>
 
         <div className="tune1 z-10 h-14 w-full rounded-2xl bg-tunesBg  px-3 flex justify-between items-center">
-          <div className="flex gap-x-20 items-center">
+          <div className="flex items-center gap-x-3  md:gap-x-20">
             <div className="flex items-center gap-x-4">
-              <img src={image2} alt="music image" />
-              <img src={like} alt="like icon" />
+              <img src={image1} alt="music image" />
+              <img src={like} alt="like icon" className="hidden md:block" />
             </div>
-            <p className="text-xs w-[150px]">Stand strong ~ Davido</p>
+            <div className="">
+              <p className="text-xs w-[150px]">Let me love you - Krisx</p>
+              <p className="text-xs   w-20 md:hidden">Single</p>
+            </div>
           </div>
-          <p className="text-xs  text-center w-20">African Giant</p>
-          <p className="text-xs w-6 text-center">02:02</p>
-          <img src={more} alt="more options button" />
+          <p className="hidden text-xs  text-center w-20 md:block">Single</p>
+          <p className="hidden text-xs w-6 text-center md:block">04:17</p>
+          <div className="flex flex-col gap-y-1">
+            <img src={more} alt="more options button" />
+            <p className=" text-xs w-6 text-center md:hidden">04:17</p>
+          </div>
         </div>
 
         <div className="tune1 z-10 h-14 w-full rounded-2xl bg-tunesBg  px-3 flex justify-between items-center">
-          <div className="flex gap-x-20 items-center">
+          <div className="flex items-center gap-x-3  md:gap-x-20">
             <div className="flex items-center gap-x-4">
-              <img src={image4} alt="music image" />
-              <img src={like} alt="like icon" />
+              <img src={image1} alt="music image" />
+              <img src={like} alt="like icon" className="hidden md:block" />
             </div>
-            <p className="text-xs w-[150px]">Closa ~ Ybee</p>
-          </div>
-          <p className="text-xs  text-center w-20">Obi datti</p>
-          <p className="text-xs w-6 text-center">03:23</p>
-          <img src={more} alt="more options button" />
-        </div>
-
-        <div className="tune1 z-10 h-14 w-full rounded-2xl bg-tunesBg  px-3 flex justify-between items-center">
-          <div className="flex gap-x-20 items-center">
-            <div className="flex items-center gap-x-4">
-              <img src={image5} alt="music image" />
-              <img src={like} alt="like icon" />
+            <div className="">
+              <p className="text-xs w-[150px]">Let me love you - Krisx</p>
+              <p className="text-xs   w-20 md:hidden">Single</p>
             </div>
-            <p className="text-xs w-[150px]">Wetin man go do ~ Burna</p>
           </div>
-          <p className="text-xs  text-center w-20">African Giant</p>
-          <p className="text-xs w-6 text-center">02:30</p>
-          <img src={more} alt="more options button" />
+          <p className="hidden text-xs  text-center w-20 md:block">Single</p>
+          <p className="hidden text-xs w-6 text-center md:block">04:17</p>
+          <div className="flex flex-col gap-y-1">
+            <img src={more} alt="more options button" />
+            <p className=" text-xs w-6 text-center md:hidden">04:17</p>
+          </div>
         </div>
       </div>
     </section>

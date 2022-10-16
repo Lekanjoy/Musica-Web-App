@@ -11,14 +11,14 @@ import profile from '../assets/sideBar Icons/profile.png'
 function SideBar() {
 
   return (
-    <nav className="bg-bgDarkSecondary absolute  w-80  h-auto rounded-xl mt-[85px] transition-all pl-9 py-16 ">
+    <nav className="bg-bgDarkSecondary border border-t-inputText border-x-0 border-b-0 fixed z-50  w-80  h-auto rounded-br-2xl mt-[64px] transition-all left-0 pl-9 py-16 ">
       <Link to="/">
-        <div className="flex items-center  gap-x-7 mb-12 ml-[-12px] font-bold cursor-pointer">
+        <div className="flex items-center  gap-x-7 mb-12 ml-[-12px] font-bold cursor-pointer rounded">
           <img src={home} alt="home icon" />
           <p className="ml-[-11px] text-textSideMenu text-[17px]">Home</p>
         </div>
       </Link>
-      <Link to="/my collections">
+      <Link to="/collections">
         <div className="flex items-center  gap-x-7 mb-12  font-bold cursor-pointer">
           <img src={collections} alt="home icon" className=" ml-[2px]" />
           <p className="ml-[5px] text-textSideMenu text-[17px] ">
