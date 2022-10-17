@@ -22,7 +22,7 @@ function Tunes() {
         <img
           src={cover}
           alt="cover image"
-          className="absolute w-full opacity-10 z-[1] bottom-[70%]  right-0 md:bottom-[50%]"
+          className="absolute w-full opacity-10 z-[1] bottom-[70%]  right-0 md:bottom-[44%]"
         />
         <img src={cover} alt="cover image" className="z-10 " />
         <div className="text z-10">

@@ -6,28 +6,25 @@
 html {
     -webkit-tap-highlight-color: transparent;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     height: 8px;
     width: 10px;
     background-color: transparent;
 }
-  ::-webkit-scrollbar-thumb:horizontal {
-      background: rgba(255, 255, 255, 0.25);
-      border-radius: 10px;
-      border-radius: 12px;
-      
-  }
+
+::-webkit-scrollbar-thumb:horizontal {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    border-radius: 12px;
+
+}
 
 
-  ::-webkit-scrollbar-thumb:vertical {
-      background: #aaa;
-      border-radius: 10px;
-      border-radius: 12px;
-  }
-
-#footer {
-    backdrop-filter: blur(10px);
-    filter: drop-shadow(0px -25px 100px rgba(16, 16, 16, 0.51));
+::-webkit-scrollbar-thumb:vertical {
+    background: #aaa;
+    border-radius: 10px;
+    border-radius: 12px;
 }
 
 input[type="range"] {
@@ -51,9 +48,24 @@ input[type="range"]::-webkit-slider-runnable-track {
     height: 4px;
 }
 
+#footer {
+    backdrop-filter: blur(10px);
+    filter: drop-shadow(0px -25px 100px rgba(16, 16, 16, 0.51));
+}
+
+
 
 @layer components {
     .charts {
         @apply min-w-[323px] h-60 rounded-[20px] bg-bgDarkSecondary flex justify-between items-start mb-3 p-4 md:items-center md:w-auto md:h-auto md:rounded-3xl
     }
+}
+
+/* remove horizontal scroll bar in smaller screens */
+@media (max-width: 640px) {
+    ::-webkit-scrollbar-thumb:horizontal {
+        display: none;
+
+    }
+
 }

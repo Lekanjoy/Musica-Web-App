@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import play from "../assets/musicplayer/Frame 7.png";
+import pause from '../assets/musicplayer/pause.svg'
 import next from "../assets/musicplayer/next.png";
 import shuffle from "../assets/musicplayer/shuffle.png";
 import previous from "../assets/musicplayer/previous.png";
@@ -26,10 +27,10 @@ function MusicPlayer() {
   }
 
   let audio;
-    useEffect(() => {
-      audio = document.getElementById("audio");
-      range = document.getElementById("range");
-    });
+  useEffect(() => {
+    audio = document.getElementById("audio");
+    range = document.getElementById("range");
+  });
 
   const [songs, setSongs] = useState(MusicData);
   // Keep track of Current Song
@@ -59,11 +60,32 @@ function MusicPlayer() {
   };
 
   // Handle Next Song
-function nextSong(){
-  setCurrrentSongIndex(currentSongIndex < songs.length -1 ? currentSongIndex + 1 : 0);
+  function nextSong() {
+    setCurrrentSongIndex(
+      currentSongIndex < songs.length - 1 ? currentSongIndex + 1 : 0
+    );
+    setTimeout(() => {
+      playSong();
+    }, 100);
+  }
 
-};
+  // Handle Previous Song
+  function prevSong() {
+    setCurrrentSongIndex(
+      currentSongIndex === 0 ? songs.length - 1 : currentSongIndex - 1
+    );
+    setTimeout(() => {
+      playSong();
+    }, 100);
+  }
 
+  // Handle Shuffle Song
+  function shuffleSong() {
+    const musicDataLength = songs.length - 1;
+    let randomSongIndex = Math.floor(Math.random() * musicDataLength);
+    setCurrrentSongIndex(randomSongIndex);
+    console.log(randomSongIndex);
+  }
 
   // Update Music Progress Bar
   function updateMusicProgress(e) {
@@ -82,6 +104,9 @@ function nextSong(){
     audio.currentTime = (clickedSpot / maxValue) * duration;
   }
 
+  const coverImageStyles = "mt-[25cpx] max-w-[75px] max-h-[65px] ";
+  const musicInfoStyles = "relative flex items-center gap-x-2";
+
   return (
     <footer
       id="footer"
@@ -93,28 +118,39 @@ function nextSong(){
         src={`/src/components/musicFiles//${songs[currentSongIndex]?.src}`}
         type="audio/mpeg"
       ></audio>
-      <div className="flex items-center gap-x-2">
+      <div
+        id="coverImage"
+        className={
+          isPlaying === true
+            ? `${musicInfoStyles} after:content-[''] after:absolute after:top-[24px] after:left-[24px] after:w-[15px] after:h-[15px] after:bg-white after:rounded-full`
+            : musicInfoStyles
+        }
+      >
         <img
           src={`/src/components/musicFiles//${songs[currentSongIndex]?.coverImage}`}
           alt="music cover"
-          className="mt-[25cpx] max-w-[75px] max-h-[65px] rounded-xl animate-spi"
+          className={
+            isPlaying === true
+              ? `${coverImageStyles} animate-spin rounded-full`
+              : coverImageStyles
+          }
         />
         <div className="details">
           <h3 className="font-bold mb-1">
-            {songs[currentSongIndex].musicName}
+            {songs[currentSongIndex]?.musicName}
           </h3>
           <p className="text-sm text-[rgba(255_,255_,255_,0.44)]">
-            {songs[currentSongIndex].artistName}
+            {songs[currentSongIndex]?.artistName}
           </p>
         </div>
       </div>
       {/* Controls for desktop */}
       <div className="hidden flex-col w-[750px] items-center cursor-pointer md:flex">
         <div className="flex items-center  gap-x-11">
-          <img src={shuffle} alt="shuffle button" />
-          <img src={previous} alt="previous button" />
+          <img onClick={shuffleSong} src={shuffle} alt="shuffle button" />
+          <img onClick={prevSong} src={previous} alt="previous button" />
           <img onClick={handleMusic} src={play} alt="button" />
-          <img src={next} alt="next button" />
+          <img onClick={nextSong} src={next} alt="next button" />
           <img src={repeatOne} alt="repeatOne button" />
         </div>
         <input
