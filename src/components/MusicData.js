@@ -15,35 +15,5 @@ export default [
     coverImage: "rush-cover.png",
   },
 
-  {
-    id: 2,
-    musicName: "Rush",
-    artistName: "Ayra Starr",
-    src: "Ayra-Starr-Rush.mp3",
-    coverImage: "rush-cover.png",
-  },
-
-  {
-    id: 2,
-    musicName: "Rush",
-    artistName: "Ayra Starr",
-    src: "Ayra-Starr-Rush.mp3",
-    coverImage: "rush-cover.png",
-  },
-
-  {
-    id: 2,
-    musicName: "Rush",
-    artistName: "Ayra Starr",
-    src: "Ayra-Starr-Rush.mp3",
-    coverImage: "rush-cover.png",
-  },
-  
-  {
-    id: 2,
-    musicName: "Rush",
-    artistName: "Ayra Starr",
-    src: "Ayra-Starr-Rush.mp3",
-    coverImage: "rush-cover.png",
-  },
+ 
 ];

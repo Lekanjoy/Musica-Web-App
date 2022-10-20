@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import play from "../assets/musicplayer/Frame 7.png";
-import pause from '../assets/musicplayer/pause.svg'
+import pause from "../assets/musicplayer/pause.svg";
 import next from "../assets/musicplayer/next.png";
 import shuffle from "../assets/musicplayer/shuffle.png";
 import previous from "../assets/musicplayer/previous.png";
@@ -9,36 +9,45 @@ import volume from "../assets/musicplayer/volume-high.png";
 import MusicData from "./MusicData";
 
 function MusicPlayer() {
-  // Set lower fill color in music range input
-  const [progressValue, setProgressValue] = useState(0);
   let range;
+  let range2;
+  let audio;
+
+  // Set Lower fill color in music range input
+  const [progressValue, setProgressValue] = useState(0);
   function setLowerFillColor() {
     let percent = ((progressValue - range.min) / (range.max - range.min)) * 100;
     range.style.background = `linear-gradient(to right, #FACD66, #FACD66 ${percent}%, rgba(255, 255, 255, 0.04) ${percent}%, rgba(255, 255, 255, 0.04) 100%)`;
   }
-  // Set lower fill color in volume range input
-  const [volumeValue, setVolumeValue] = useState(30);
-  let range2 = document.getElementById("range2");
+
+  // Set Lower fill color in volume range input and change volume
+  const [volumeValue, setVolumeValue] = useState(50);
   function setLowerFillVolumeColor(e) {
     setVolumeValue(e.target.value);
+    let audioVolume = volumeValue / 100;
+    audio.volume = audioVolume;
+
+    // calculate volume percent to fill with yellow bg
     let percent =
       ((volumeValue - range2.min) / (range2.max - range2.min)) * 100;
     range2.style.background = `linear-gradient(to right, #FACD66, #FACD66 ${percent}%, rgba(255, 255, 255, 0.04) ${percent}%, rgba(255, 255, 255, 0.04) 100%)`;
   }
 
-  let audio;
+  //  Directly manipulating the DOM
   useEffect(() => {
     audio = document.getElementById("audio");
     range = document.getElementById("range");
+    range2 = document.getElementById("range2");
   });
 
-  const [songs, setSongs] = useState(MusicData);
+  // Handle Music Playing
+  const [songs] = useState(MusicData);
+  const [isPlaying, setIsPlaying] = useState(false);
+
   // Keep track of Current Song
   const [currentSongIndex, setCurrrentSongIndex] = useState(0);
 
-  // Handle Music Playing
-  const [isPlaying, setIsPlaying] = useState(false);
-
+  //  Check if song is playing
   const handleMusic = () => {
     if (isPlaying === false) {
       playSong();
@@ -87,23 +96,47 @@ function MusicPlayer() {
     console.log(randomSongIndex);
   }
 
+  // Handle Repeat Song
+  const [isRepeat, setIsRepeat] = useState(false);
+  function repeatSong() {
+       if (isRepeat == false) {
+        setIsRepeat(true)
+         audio.loop = true;
+         playSong();
+         console.log("Looped");
+       } else {
+        setIsRepeat(false)
+         audio.loop = false;
+         console.log("Not Looped");
+
+       }
+
+    
+
+   
+  
+  }
+
   // Update Music Progress Bar
   function updateMusicProgress(e) {
     const { currentTime, duration } = e.target;
     const ProgressPercent = (currentTime / duration) * 100;
     setProgressValue(ProgressPercent);
     setLowerFillColor();
-    // console.log((duration/60).toFixed(2));
   }
-  // Set Music Progress Bar
+
   function setMusicProgress(e) {
+    let { currentTime, duration } = audio;
     const maxValue = range.max;
-    const clickedSpot = e.clientX;
-    const duration = audio.duration;
+    const clickedSpot = e.target.value;
 
-    audio.currentTime = (clickedSpot / maxValue) * duration;
+    currentTime = (clickedSpot / maxValue) * duration;
+    setProgressValue(currentTime);
+
+    console.log(currentTime);
   }
 
+  // Styles
   const coverImageStyles = "mt-[25cpx] max-w-[75px] max-h-[65px] ";
   const musicInfoStyles = "relative flex items-center gap-x-2";
 
@@ -113,6 +146,7 @@ function MusicPlayer() {
       className="w-full h-[125px] z-40 bsg-[#1E1E1E] px-6 text-white fixed flex justify-between items-center left-0 bottom-0"
     >
       <audio
+        onEnded={nextSong}
         onTimeUpdate={updateMusicProgress}
         id="audio"
         src={`/src/components/musicFiles//${songs[currentSongIndex]?.src}`}
@@ -151,15 +185,14 @@ function MusicPlayer() {
           <img onClick={prevSong} src={previous} alt="previous button" />
           <img onClick={handleMusic} src={play} alt="button" />
           <img onClick={nextSong} src={next} alt="next button" />
-          <img src={repeatOne} alt="repeatOne button" />
+          <img onClick={repeatSong} src={repeatOne} alt="repeatOne button" />
         </div>
         <input
           min="0"
           max="100"
           step="1"
           value={progressValue}
-          onChange={setLowerFillColor}
-          onClick={setMusicProgress}
+          onChange={setMusicProgress}
           type="range"
           id="range"
           className="w-full"

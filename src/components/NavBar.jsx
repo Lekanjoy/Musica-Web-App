@@ -4,12 +4,7 @@ import logo from "../assets/navBar/music-logo.svg";
 import search from "../assets/navBar/search.svg";
 import SideBar from "./SideBar";
 
-function NavBar({ setShowSideBar }) {
-  // Toggle Sidebar
-  function toggleSideBar() {
-    setShowSideBar((prevState) => !prevState);
-  }
-
+function NavBar({ setShowSideBar, toggleSideBar }) {
   // Add background onScroll
   useEffect(() => {
     const header = document.getElementById("header");
@@ -20,9 +15,7 @@ function NavBar({ setShowSideBar }) {
         header.style.background = "transparent";
       }
     });
-
-  },[])
-  
+  }, []);
 
   return (
     <header
