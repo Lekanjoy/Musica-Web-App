@@ -1,20 +1,14 @@
 import { useContext } from "react";
 import { SongContext } from "../App";
 
-const Releases = () => {
-  const { newReleases } = useContext(SongContext);
-  //Build skeleton loader with animation-pulse
-
-        
-    
-
-
+const Popular = () => {
+    const { popularSongs } = useContext(SongContext);
 
   return (
-    <section className="w-full mb-4 md:pl-[5rem]">
-      <h2 className="mb-3 text-textCategories font-bold">New Releases</h2>
+    <section className="w-full mb-36 md:pl-[5rem]">
+      <h2 className="mb-3 text-textCategories font-bold">Popular in your area</h2>
       <div className="w-full flex gap-x-8 overflow-x-auto ">
-        {newReleases.map((song) => {
+        {popularSongs.map((song) => {
           return (
             <div className="min-w-[153px] min-h-[200px] text-xs text-white mb-1">
               <img
@@ -32,4 +26,4 @@ const Releases = () => {
   );
 };
 
-export default Releases;
+export default Popular;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import play from "../assets/musicplayer/Frame 7.png";
 import pause from "../assets/musicplayer/pause.svg";
 import next from "../assets/musicplayer/next.png";
@@ -7,8 +7,10 @@ import previous from "../assets/musicplayer/previous.png";
 import repeatOne from "../assets/musicplayer/repeate-one.png";
 import volume from "../assets/musicplayer/volume-high.png";
 import MusicData from "./MusicData";
+import { SongContext } from "../App";
 
 function MusicPlayer() {
+  const {newReleases} = useContext(SongContext);
   let range;
   let range2;
   let audio;

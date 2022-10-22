@@ -1,30 +1,59 @@
-import {Routes, Route} from 'react-router-dom'
-import Home from './components/Home'
+import { useState, useEffect, createContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
 import Layout from "./components/Layout";
 import Collections from "./components/pages/Collections";
-import Tunes from './components/pages/Tunes';
+import Tunes from "./components/pages/Tunes";
+import Error404 from "./components/pages/Error404";
 
-
+export const SongContext = createContext();
 function App() {
+  const [newSongs, setNewSongs] = useState([]);
+  const [playlists] = useState("playlist");
+  const [newReleases, setNewReleases] = useState([]);
+  const [popularSongs, setPopularSongs] = useState([]);
 
-return (
-  <>
-    <Routes>
+  // Fetch Playlists Data
+  useEffect(() => {
+    fetch(`https://musica-api.up.railway.app/${playlists}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setNewSongs(data);
+      });
+  }, [playlists]);
 
-      <Route path="/">
+  // Fetch New Releases Songs Data
+  useEffect(() => {
+    fetch(`https://musica-api.up.railway.app/new`)
+      .then((res) => res.json())
+      .then((data) => {
+        setNewReleases(data);
+      });
+  }, []);
 
-        <Route element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="collections" element={<Collections />} />
-          <Route path="tunes" element={<Tunes />} />
+  // Fetch Popular Songs Data
+  useEffect(() => {
+    fetch(`https://musica-api.up.railway.app/popular`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPopularSongs(data);
+      });
+  }, []);
+
+  return (
+    <SongContext.Provider value={{ newSongs, newReleases, popularSongs }}>
+      <Routes>
+        <Route path="/">
+          <Route element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="collections" element={<Collections />} />
+            <Route path="tunes/:charts" element={<Tunes />} />
+          </Route>
+          <Route path="*" element={<Error404 />} />
         </Route>
-        
-      </Route>
-
-    </Routes>
-  </>
-);
-
+      </Routes>
+    </SongContext.Provider>
+  );
 }
 
-export default App
+export default App;
