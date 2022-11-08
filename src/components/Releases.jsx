@@ -5,18 +5,13 @@ const Releases = () => {
   const { newReleases } = useContext(SongContext);
   //Build skeleton loader with animation-pulse
 
-        
-    
-
-
-
   return (
     <section className="w-full mb-4 md:pl-[5rem]">
       <h2 className="mb-3 text-textCategories font-bold">New Releases</h2>
       <div className="w-full flex gap-x-8 overflow-x-auto ">
         {newReleases.map((song) => {
           return (
-            <div className="min-w-[153px] min-h-[200px] text-xs text-white mb-1">
+            <div key={song.title} className="min-w-[153px] min-h-[200px] text-xs text-white mb-1">
               <img
                 src={song.cover}
                 alt="cover image"

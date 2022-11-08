@@ -10,7 +10,7 @@ const Popular = () => {
       <div className="w-full flex gap-x-8 overflow-x-auto ">
         {popularSongs.map((song) => {
           return (
-            <div className="min-w-[153px] min-h-[200px] text-xs text-white mb-1">
+            <div key={song.id} className="min-w-[153px] min-h-[200px] text-xs text-white mb-1">
               <img
                 src={song.cover}
                 alt="cover image"

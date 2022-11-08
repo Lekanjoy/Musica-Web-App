@@ -69,7 +69,7 @@ function Tunes() {
                 <img src={like} alt="like icon" className="hidden md:block" />
               </div>
               <div className="">
-                <p className="text-xs w-[150px]">{song.title} - {song.artist}</p>
+                <p className="text-xs md:w-[150px]">{song.title} - {song.artist}</p>
                 <p className="text-xs   w-20 md:hidden">Single</p>
               </div>
             </div>

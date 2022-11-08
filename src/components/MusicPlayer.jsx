@@ -10,37 +10,9 @@ import MusicData from "./MusicData";
 import { SongContext } from "../App";
 
 function MusicPlayer() {
-  const {newReleases} = useContext(SongContext);
-  let range;
-  let range2;
-  let audio;
-
-  // Set Lower fill color in music range input
-  const [progressValue, setProgressValue] = useState(0);
-  function setLowerFillColor() {
-    let percent = ((progressValue - range.min) / (range.max - range.min)) * 100;
-    range.style.background = `linear-gradient(to right, #FACD66, #FACD66 ${percent}%, rgba(255, 255, 255, 0.04) ${percent}%, rgba(255, 255, 255, 0.04) 100%)`;
-  }
-
-  // Set Lower fill color in volume range input and change volume
-  const [volumeValue, setVolumeValue] = useState(50);
-  function setLowerFillVolumeColor(e) {
-    setVolumeValue(e.target.value);
-    let audioVolume = volumeValue / 100;
-    audio.volume = audioVolume;
-
-    // calculate volume percent to fill with yellow bg
-    let percent =
-      ((volumeValue - range2.min) / (range2.max - range2.min)) * 100;
-    range2.style.background = `linear-gradient(to right, #FACD66, #FACD66 ${percent}%, rgba(255, 255, 255, 0.04) ${percent}%, rgba(255, 255, 255, 0.04) 100%)`;
-  }
-
-  //  Directly manipulating the DOM
-  useEffect(() => {
-    audio = document.getElementById("audio");
-    range = document.getElementById("range");
-    range2 = document.getElementById("range2");
-  });
+  const { newReleases } = useContext(SongContext);
+  const { popularSongs } = useContext(SongContext);
+  const { newSongs } = useContext(SongContext);
 
   // Handle Music Playing
   const [songs] = useState(MusicData);
@@ -101,22 +73,16 @@ function MusicPlayer() {
   // Handle Repeat Song
   const [isRepeat, setIsRepeat] = useState(false);
   function repeatSong() {
-       if (isRepeat == false) {
-        setIsRepeat(true)
-         audio.loop = true;
-         playSong();
-         console.log("Looped");
-       } else {
-        setIsRepeat(false)
-         audio.loop = false;
-         console.log("Not Looped");
-
-       }
-
-    
-
-   
-  
+    if (isRepeat == false) {
+      setIsRepeat(true);
+      audio.loop = true;
+      playSong();
+      console.log("Looped");
+    } else {
+      setIsRepeat(false);
+      audio.loop = false;
+      console.log("Not Looped");
+    }
   }
 
   // Update Music Progress Bar
@@ -137,6 +103,37 @@ function MusicPlayer() {
 
     console.log(currentTime);
   }
+
+  let range;
+  let range2;
+  let audio;
+
+  // Set Lower fill color in music range input
+  const [progressValue, setProgressValue] = useState(0);
+  function setLowerFillColor() {
+    let percent = ((progressValue - range.min) / (range.max - range.min)) * 100;
+    range.style.background = `linear-gradient(to right, #FACD66, #FACD66 ${percent}%, rgba(255, 255, 255, 0.04) ${percent}%, rgba(255, 255, 255, 0.04) 100%)`;
+  }
+
+  // Set Lower fill color in volume range input and change volume
+  const [volumeValue, setVolumeValue] = useState(50);
+  function setLowerFillVolumeColor(e) {
+    setVolumeValue(e.target.value);
+    let audioVolume = volumeValue / 100;
+    audio.volume = audioVolume;
+
+    // calculate volume percent to fill with yellow bg
+    let percent =
+      ((volumeValue - range2.min) / (range2.max - range2.min)) * 100;
+    range2.style.background = `linear-gradient(to right, #FACD66, #FACD66 ${percent}%, rgba(255, 255, 255, 0.04) ${percent}%, rgba(255, 255, 255, 0.04) 100%)`;
+  }
+
+  //  Directly manipulating the DOM
+  useEffect(() => {
+    audio = document.getElementById("audio");
+    range = document.getElementById("range");
+    range2 = document.getElementById("range2");
+  });
 
   // Styles
   const coverImageStyles = "mt-[25cpx] max-w-[75px] max-h-[65px] ";

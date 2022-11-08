@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import Collections from "./components/pages/Collections";
 import Tunes from "./components/pages/Tunes";
 import Error404 from "./components/pages/Error404";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 export const SongContext = createContext();
 function App() {
@@ -40,19 +41,21 @@ function App() {
       });
   }, []);
 
-  return (
-    <SongContext.Provider value={{ newSongs, newReleases, popularSongs }}>
-      <Routes>
-        <Route path="/">
-          <Route element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="collections" element={<Collections />} />
-            <Route path="tunes/:charts" element={<Tunes />} />
+    return (
+      <ErrorBoundary>
+      <SongContext.Provider value={{ newSongs, newReleases, popularSongs }}>
+        <Routes>
+          <Route path="/">
+            <Route element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="collections" element={<Collections />} />
+              <Route path="tunes/:charts" element={<Tunes />} />
+            </Route>
+            <Route path="*" element={<Error404 />} />
           </Route>
-          <Route path="*" element={<Error404 />} />
-        </Route>
-      </Routes>
-    </SongContext.Provider>
+        </Routes>
+      </SongContext.Provider>
+  </ErrorBoundary>
   );
 }
 

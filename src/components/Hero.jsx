@@ -8,6 +8,34 @@ import Ellipse4 from "../assets/hero icons/Ellipse 6.png";
 import heart from "../assets/hero icons/Heart.png";
 
 function Hero() {
+let names = ["Alice","Bob","Bob"]
+let heights = [155,185,150]
+
+  // function singleNumber(nums){
+  //   let single = 0;
+  //   for(let i = 0; i < nums.length; i++){
+  //     single = nums[i];
+  //   }
+  //   return single;
+    
+  // }
+// var plusOne = function(digits) {
+
+//     var i = digits.length - 1;
+//     while (i >= 0) {
+//         if (digits[i] < 9) {
+//             digits[i]++;
+//             return digits;
+//         }
+//         digits[i] = 0;
+//         i--;
+//     }
+//     digits.unshift(1);
+//     return digits;
+    
+    
+//};
+
   return (
     <div
       className="bg-heroBG bg-vectormob bg-no-repeat bg-right-top text-white w-full h-[503px]
